@@ -169,6 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Bits</a></li>
+
 </ul>
 
     </div>
@@ -317,10 +318,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integers">Integers</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bits</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#integers">Integers</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-representation">Integer Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bitmasking">Bitmasking</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -335,27 +340,22 @@ document.write(`
 <h1>Bits<a class="headerlink" href="#bits" title="Permalink to this heading">#</a></h1>
 <p>Ben Reed</p>
 <p>Thu, 2 Feb 2023</p>
-<section id="integers">
-<h2>Integers<a class="headerlink" href="#integers" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integers are stored as a binary numbers.</span>
-<span class="c1"># Each binary digit is referred to as a bit. Since binary numbers are base-2, each bit can be a 0 or 1.</span>
-<span class="c1"># Since modern processors manage memory in terms of 8-bit bytes, integers are generally stored as 8-bit, 16-bit, 32-bit, 64-bit, and sometimes 128-bit numbers.</span>
-<span class="c1"># Some languages or libraries provide access to larger numbers, sometimes even arbitrarily large numbers.</span>
-<span class="c1"># Signed integers use one of the bits for the sign, which means that an 8-bit unsigned integer can represent numbers from 0 to 28-1, but an 8-bit signed integer goes from -27 to 27-1.</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="integers">
+<h1>Integers<a class="headerlink" href="#integers" title="Permalink to this heading">#</a></h1>
+<ul class="simple">
+<li><p>Integers are stored as a binary numbers.</p></li>
+<li><p>Each binary digit is referred to as a bit. Since binary numbers are base-2, each bit can be a 0 or 1.</p></li>
+<li><p>Since modern processors manage memory in terms of 8-bit bytes, integers are generally stored as 8-bit, 16-bit, 32-bit, 64-bit, and sometimes 128-bit numbers.</p></li>
+<li><p>Some languages or libraries provide access to larger numbers, sometimes even arbitrarily large numbers.</p></li>
+<li><p>Signed integers use one of the bits for the sign, which means that an 8-bit unsigned integer can represent numbers from 0 to 28-1, but an 8-bit signed integer goes from -27 to 27-1.</p></li>
+</ul>
 <section id="integer-representation">
 <h2>Integer Representation<a class="headerlink" href="#integer-representation" title="Permalink to this heading">#</a></h2>
+<p>All of these assignments will result in the unsigned 16-bit integer i storing the number 0000000100000001</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># All of these assignments will result in the unsigned 16-bit integer i storing the number 0000000100000001</span>
-
-<span class="n">i</span> <span class="o">=</span> <span class="mi">257</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">257</span>
 <span class="k">assert</span> <span class="n">i</span> <span class="o">==</span> <span class="mb">0b100000001</span>
 <span class="n">i</span> <span class="o">=</span> <span class="mh">0x101</span>
 <span class="k">assert</span> <span class="n">i</span> <span class="o">==</span> <span class="mb">0b100000001</span>
@@ -363,28 +363,37 @@ document.write(`
 <span class="k">assert</span> <span class="n">i</span> <span class="o">==</span> <span class="mb">0b100000001</span>
 <span class="n">i</span> <span class="o">=</span> <span class="mo">0o401</span>
 <span class="k">assert</span> <span class="n">i</span> <span class="o">==</span> <span class="mb">0b100000001</span>
-
-<span class="c1"># Representing a number in a different base does not change how it is stored.</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Representing a number in a different base does not change how it is stored.</p>
 </section>
 <section id="bitmasking">
 <h2>Bitmasking<a class="headerlink" href="#bitmasking" title="Permalink to this heading">#</a></h2>
+<p>Since each bit is 0 or 1 we can do the equivalent of a logical operation as a bit operation where we treat 0 as false and 1 as true.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Since each bit is 0 or 1 we can do the equivalent of a logical operation as a bit operation where we treat 0 as false and 1 as true.</span>
-<span class="k">assert</span> <span class="p">(</span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">True</span><span class="p">)</span>  <span class="o">==</span> <span class="kc">True</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="p">(</span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">True</span><span class="p">)</span>  <span class="o">==</span> <span class="kc">True</span>
 <span class="k">assert</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>          <span class="o">==</span> <span class="kc">True</span>
 <span class="k">assert</span> <span class="p">(</span><span class="kc">True</span> <span class="ow">and</span> <span class="kc">False</span><span class="p">)</span> <span class="o">==</span> <span class="kc">False</span>
 <span class="k">assert</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="p">)</span>          <span class="o">==</span> <span class="kc">False</span>
-
-<span class="c1"># We can do it to all the bits at once.</span>
-<span class="k">assert</span> <span class="mb">0b11001101</span> <span class="o">&amp;</span> <span class="mb">0b1111</span> <span class="o">==</span> <span class="mb">0b1101</span>
-
-<span class="c1"># Since all integers are binary numbers, the above can be expressed as:</span>
-<span class="k">assert</span> <span class="mb">0b11001101</span> <span class="o">&amp;</span> <span class="mh">0xf</span> <span class="o">==</span> <span class="mi">13</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can do it to all the bits at once.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="mb">0b11001101</span> <span class="o">&amp;</span> <span class="mb">0b1111</span> <span class="o">==</span> <span class="mb">0b1101</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since all integers are binary numbers, the above can be expressed as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="mb">0b11001101</span> <span class="o">&amp;</span> <span class="mh">0xf</span> <span class="o">==</span> <span class="mi">13</span>
 </pre></div>
 </div>
 </div>
@@ -446,10 +455,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integers">Integers</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Bits</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#integers">Integers</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integer-representation">Integer Representation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bitmasking">Bitmasking</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
